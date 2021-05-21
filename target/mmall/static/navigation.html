@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+
+
+</head>
+<script src="js/jquery-1.12.4.js"></script>
+<style type="text/css">
+    .globe_nav {
+        height: 50px;
+        line-height: 50px;
+        background: lightslategray;
+    }
+    
+    .globe_nav a {
+        color: beige;
+    }
+</style>
+
+<body>
+    <nav class="container">
+
+        <ul class="nav nav-pills nav-justified">
+            <li><a href="#"><span class="glyphicon glyphicon-home"></span>首页</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-gift"></span>通用英语</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>海外考试</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-globe"></span>青少英语</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-bishop"></span>行业英语</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>在线购买</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>全球师资</a>
+                <li><a href="#">更多栏目</a></li>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <div class="container">
+        <Button type="button" id="bt">加载json数据</Button>
+        <table class="table" id="tb">
+            <tr>
+                <th>id</th>
+                <th>parentId</th>
+                <th>name</th>
+                <th>status</th>
+                <th>sortOrder</th>
+                <th>createTime</th>
+                <th>updateTime</th>
+            </tr>
+
+            <tr>
+                <td>天马</td>
+                <td>天马</td>
+            </tr>
+            <tr>
+                <td>天马</td>
+                <td>天马</td>
+            </tr>
+            <tr>
+                <td>天马</td>
+                <td>天马</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="container">
+        <form action="http://ryjy5c.natappfree.cc/manager/user/login.do" method="post">
+            <input type="text" name="username">
+            <input type="text" name="password">
+            <input type="submit" value="登陆啦~">
+        </form>
+    </div>
+
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script>
+    $(function() {
+
+        $("#bt").click(function() {
+            $.ajax({
+                url: "http://ryjy5c.natappfree.cc/manager/category/get_category.do",
+                data: "",
+                Type: "get",
+                dataType: "json",
+                success: function(res) {
+                    //组装第一个取出数据组装网页html标签元素
+                    console.log(res);
+                    alert(res.code);
+                    var td1 = $("<td>" + res.data[1] + "</td>");
+                    //组成第二个td
+                    var td2 = $("<td>" + res.data[2] + "</td>");
+                    var td2 = $("<td>" + res.data[3] + "</td>");
+                    var tr = $("<tr></tr>");
+                    //把td表格追加到tr的子元素后面
+                    $(tr).append(td1).append(td2);
+                    //追加到table子元素后面
+                    $("#tb").append(tr);
+
+                },
+                error: function(err) {
+                    alert('就是错了')
+                }
+            })
+
+        })
+    })
+</script>
+
+</html>
