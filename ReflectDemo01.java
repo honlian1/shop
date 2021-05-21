@@ -1,4 +1,0 @@
-public class ReflectDemo01 {
-
-
-}
